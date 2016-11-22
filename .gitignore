@@ -20,5 +20,8 @@ project/plugins/project/
 .ensime_cache/
 .ensime
 
-*/.idea/workspace.xml
-*/.idea/tasks.xml
+*.iml
+*.ipr
+*.iws
+**/.idea
+**/out

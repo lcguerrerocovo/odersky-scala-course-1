@@ -15,9 +15,7 @@ object Main {
     */
   def pascal(c: Int, r: Int): Int = {
     if (r <= 0 || c == 0 || c == r) 1
-    else {
-      pascal(r - 1, c - 1) + pascal(r - 1, c)
-    }
+    else pascal(c - 1, r - 1) + pascal(c, r - 1)
   }
 
   /**
@@ -49,7 +47,7 @@ object Main {
     var newChars = eatNonParensChars(chars)
 
     if (newChars.isEmpty) true
-    else if (newChars(0) == '(') {
+    else if (newChars(0) == '(' && newChars.length > 1) {
       newChars = findMatchingParens(newChars)
       balance(newChars)
     }

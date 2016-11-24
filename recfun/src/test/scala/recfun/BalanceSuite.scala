@@ -26,4 +26,8 @@ class BalanceSuite extends FunSuite {
     assert(!balance("())(".toList))
   }
 
+  test("balance: single open parens") {
+    assert(!balance("(".toList))
+  }
+
 }

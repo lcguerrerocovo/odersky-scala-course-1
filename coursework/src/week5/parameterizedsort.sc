@@ -1,11 +1,12 @@
+import math.Ordering
 
-def msort[T](xs: List[T])(lt: (T,T) => Boolean): List[T] = {
+def msort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = {
   def merge(xs: List[T], ys: List[T]): List[T] =
     (xs,ys) match {
       case (Nil, ys) => ys
       case (xs, Nil) => xs
       case (x :: xss, y :: yss) => {
-        if(lt(x,y)) y :: merge(xs,yss)
+        if(ord.lt(y,x)) y :: merge(xs,yss)
         else x :: merge(xss,ys)
       }
     }
@@ -13,9 +14,9 @@ def msort[T](xs: List[T])(lt: (T,T) => Boolean): List[T] = {
   if (n == 0) xs
   else {
     val (fst,snd) = xs splitAt n
-    merge(msort(fst)(lt),msort(snd)(lt))
+    merge(msort(fst),msort(snd))
   }
 }
 
-msort(List(1,4,2,6,3,9,-1,0,-10))((x: Int, y: Int) => x > y)
-msort(List("apple","acai","acerola","banana"))((x: String, y: String) => x.compareTo(y) > 0)
+msort(List(1,4,2,6,3,9,-1,0,-10))
+msort(List("apple","acai","acerola","banana"))

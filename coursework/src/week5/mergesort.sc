@@ -12,7 +12,7 @@ def msort(xs: List[Int]): List[Int] = {
   val n = xs.length/2
   if (n == 0) xs
   else {
-    val(fst,snd) = xs splitAt n
+    val (fst,snd) = xs splitAt n
     merge(msort(fst),msort(snd))
   }
 }
